@@ -64,7 +64,7 @@ PORT=${backend_port}
 DB_HOST=localhost
 DB_DIALECT=postgres
 DB_PORT=5432
-DB_TIMEZONE=-03:00
+DB_TIMEZONE=-04:00
 DB_USER=${instancia_add}
 DB_PASS=${mysql_root_password}
 DB_NAME=${instancia_add}
@@ -213,7 +213,8 @@ backend_start_pm2() {
 
   sudo su - deploy <<EOF
   cd /home/deploy/${instancia_add}/backend
-  pm2 start dist/server.js --name ${instancia_add}-backend
+  sudo pm2 start dist/server.js --name ${instancia_add}-backend
+  sudo pm2 save --force
 EOF
 
   sleep 2
